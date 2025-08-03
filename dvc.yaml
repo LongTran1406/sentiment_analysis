@@ -6,3 +6,13 @@ stages:
       - data/raw/raw_dataset.csv
     outs:
       - data/processed/cleaned_dataset.csv
+  
+  model_building:
+    cmd: python -m src.model_building data/processed/cleaned_dataset.csv best_model.pkl best_vectorizer.pkl
+    deps:
+      - src/feature_engineering.py
+      - src/model_building.py
+      - data/processed/cleaned_dataset.csv
+    outs:
+      - best_model.pkl 
+      - best_vectorizer.pkl

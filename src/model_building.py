@@ -28,7 +28,7 @@ for threshold in thresholds:
         
         X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
         X_train, X_val, y_train, y_val = train_test_split(X_train_val, y_train_val, test_size = 0.2, stratify=y_train_val)
-        X_train_text_vectorized, X_val_text_vectorized, X_test_text_vectorized, vectorizer = vectorize_text(X_train, X_val, X_test)
+        X_train_text_vectorized, X_val_text_vectorized, X_test_text_vectorized, vectorizer = feature_engineering.vectorize_text(X_train, X_val, X_test)
     
         model = MultinomialNB()
         model.fit(X_train_text_vectorized, y_train)

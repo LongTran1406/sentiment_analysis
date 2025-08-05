@@ -4,6 +4,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 import string
+from data_io import create_table, insert_sample_data, fetch_data
 #--------------------------
 nltk.download('punkt_tab')
 nltk.download('stopwords')
@@ -54,8 +55,13 @@ df = preprocessing(df)
 cleaned_df = df[['text', 'toxicity', 'obscene', 'sexual_explicit', 'identity_attack', 'insult', 'threat']]
 print(cleaned_df.isna().sum())
 cleaned_df = cleaned_df.dropna()
+cleaned_df = cleaned_df.rename(columns={"text": "comment_text"})
+
 print(cleaned_df.isna().sum())
-cleaned_df.to_csv('data/processed/cleaned_dataset.csv')
 
+create_table()
+insert_sample_data(cleaned_df)
 
-
+custom_df = fetch_data()[['comment_text' ,'toxicity']]
+print(custom_df.head())
+custom_df.to_csv('data/processed/cleaned_dataset.csv')

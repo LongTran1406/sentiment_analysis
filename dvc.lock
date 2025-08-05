@@ -10,35 +10,25 @@ stages:
       size: 56040819
     - path: src/data_cleaning.py
       hash: md5
-      md5: 7817d2d1c23b935a5a988f08c697dd8d
-      size: 1858
+      md5: c3c8cfdf47cb2caa6b6eaa45e34e2973
+      size: 2116
     outs:
     - path: data/processed/cleaned_dataset.csv
       hash: md5
-      md5: 4d8cff068c2a2cb2363e1be9adf1a34a
-      size: 26956436
+      md5: eecbd68c46eeca5cac8c180836861e6a
+      size: 23736364
   model_building:
-    cmd: python -m src.model_building data/processed/cleaned_dataset.csv 
-      best_model.pkl best_vectorizer.pkl
+    cmd: python -m src.model_building data/processed/cleaned_dataset.csv
     deps:
     - path: data/processed/cleaned_dataset.csv
       hash: md5
-      md5: 4d8cff068c2a2cb2363e1be9adf1a34a
-      size: 26956436
+      md5: eecbd68c46eeca5cac8c180836861e6a
+      size: 23736364
     - path: src/feature_engineering.py
       hash: md5
-      md5: aa01135e0d9c415a652977df515313b0
-      size: 560
+      md5: b29ba6698ebd1e33d586132aac2eda47
+      size: 584
     - path: src/model_building.py
       hash: md5
-      md5: 8e03fe26eab08420850c922bc1d26134
-      size: 3729
-    outs:
-    - path: best_model.pkl
-      hash: md5
-      md5: e49c5b6bd86e7950d9300751c4d13169
-      size: 2299855
-    - path: best_vectorizer.pkl
-      hash: md5
-      md5: fb4528ad8af223d864e5f1652e95b70f
-      size: 1699578
+      md5: 2f68f2b516410a43530dce26ffeb6861
+      size: 3823

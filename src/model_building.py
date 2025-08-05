@@ -15,15 +15,18 @@ import pickle
 
 df = pd.read_csv('data/processed/cleaned_dataset.csv')
 df = df.dropna()
+print(df.columns)
 thresholds = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6]
 best_f1 = -1
 best_run_id = None
 
+print(df.head())
 #--------------------
-mlflow.set_tracking_uri("http://54.79.130.241:5000/")
+mlflow.set_tracking_uri("http://52.62.0.221:5000/")
+mlflow.set_experiment("MultinomialNB_experiment")
 for threshold in thresholds:
    with mlflow.start_run(run_name=f"threshold_{threshold}") as run:
-        X = df[['text']]
+        X = df[['comment_text']]
         y = df['toxicity'].apply(lambda x: 1 if x >= threshold else 0)
         
         X_train_val, X_test, y_train_val, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
